@@ -48,7 +48,8 @@ body.light-mode {
     position: fixed;
     width: 250px;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2);
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    background-color: rgba(123, 193, 161, 0.2);
     padding: 2rem;
     backdrop-filter: blur(10px);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
@@ -225,6 +226,10 @@ body.light-mode {
     grid-template-columns: repeat(2, 1fr);
 }
 
+.grid2 .item:nth-child(5){
+    grid-column: span 2;
+}
+
 .item {
     width: 100%;
     height: 100%;
@@ -303,8 +308,97 @@ body.light-mode {
     left: -300px;
 }
 
-canvas{
-    color: white;
+.view{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    /* border: 2px solid var(--input-border); */
+    border: 2px solid rgba(74, 222, 128, 0.1);
+    border-radius: 0.75rem;
+    background-color: var(--input-bg);
+    color: var(--text-light);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.form-control::placeholder {
+    color: var(--text-light);
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--accent);
+    color: var(--text-light);
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+    /* background-color: var(--accent); */
+    transform: scale(1.02);
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #ffffff;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+
+.success-message {
+    display: none;
+    background-color: var(--accent);
+    color: var(--text-light);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes glow {

@@ -7,7 +7,7 @@
     <title>AVANI</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
 </head>
 
 <body>
@@ -16,7 +16,8 @@
 
     <nav class="sidebar">
         <div class="logo">
-            <img src="Assets/Logo.png" alt="">
+            <img id="dark-mode-logo" src="Assets/Logo.png" alt="">
+            <img id="light-mode-logo" src="Assets/Avani Dark Logo.png" style="display: none;" alt="">
         </div>
         <div class="nav-item" id="about">About</div>
         <div class="nav-item" id="sensor">Sensors Data</div>
@@ -149,13 +150,54 @@
                     <h1 class="title">Humidity Sensor</h1>
                     <canvas id="humidity"></canvas>
                 </div>
+                <div class="item">
+                    <h1 class="title">Soil Report</h1>
+                    <canvas id="soil"></canvas>
+                </div>
             </div>
         </section>
         <section class="content-section" id="report-section">
-
+            <div class="block">
+                <h1 class="title">3D View</h1>
+                <div class="description view">
+                    <img src="Assets/3d view.png" alt="">
+                </div>
+            </div>
+            <div class="block">
+                <h1 class="title">Report Summary</h1>
+                <p class="description">
+                    Urbanization is Rapidly Reducing Green Spaces, Leading To Environmental Issues Such As Heat Islands,
+                    Pollution, And Biodiversity Loss. City Planners Struggle To Analyze And Optimize Green Areas
+                    Effectively. Our Project, AVANI, Provides A Data-Driven Solution Using GIS And Machine Learning To
+                    Ensure Sustainable Urban Planning.
+                </p>
+            </div>
         </section>
         <section class="content-section" id="contact-section">
-
+            <div class="block">
+                <h1 class="title">Send Us A Message</h1>
+                <div class="card description">
+                    <div class="success-message">Message sent successfully!</div>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Full Name *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email address *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Subject *" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Message *" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span class="spinner"></span>
+                            <span class="btn-text">Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
 </body>
