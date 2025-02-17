@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        :root{
+            --primary-color: #043436;
+            --secondary-color: #10423D;
+            --heading-font-color: #FFFFFF;
+            --body-font-color: #BDBDBD;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            user-select: none;
+        }
+        body{
+            background: var(--primary-color);
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #grid {
+            width: 100vw;
+            height: 100vh;
+            padding: 30px;
+            gap: 30px;
+            display: grid;
+            grid-template-columns: 2fr 7fr;
+            grid-template-rows: repeat(10, 1fr);
+        }
+
+        #grid-item1 {
+            background-color: var(--secondary-color);
+            border-radius: 20px;
+            grid-row: 1/11;
+        }
+
+        #grid-item2 {
+            font-weight: 500;
+            font-size: 30px;
+            grid-row: 1/11;
+        }
+
+        #inner-box {
+            width: 100%;
+            height: 93%;
+            margin-top: 1.5%;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        #logo {
+            height: 180px;
+        }
+        #logo img {
+            width: 80%;
+        }
+        .heading{
+            color: var(--heading-font-color);
+            
+        }
+        
+        ul {
+            font-size: 20px;
+            color: var(--heading-font-color);
+            list-style: none;
+        }
+
+        li {
+            height: 55px;
+            margin: 15px 0px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        li:hover{
+            background-color: var(--primary-color);
+        }
+
+        .nav-logo {
+            height: 30px;
+        }
+
+        .nav-items{
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="grid">
+        <div id="grid-item1">
+            <div id="logo" class="center">
+                <img src="Assets/Logo.png" alt="">
+            </div>
+            <ul>
+                <li class="center">
+                    <div class="center nav-items">
+                        <img class="nav-logo" src="Apple.svg" alt="">
+                        <p class="nav-title">Apple</p>
+                    </div>
+                </li>
+                <li class="center">
+                    <div class="center nav-items">
+                        <img class="nav-logo" src="Apple.svg" alt="">
+                        <p class="nav-title">Apple</p>
+                    </div>
+                </li>
+                <li class="center">
+                    <div class="center nav-items">
+                        <img class="nav-logo" src="Apple.svg" alt="">
+                        <p class="nav-title">Apple</p>
+                    </div>
+                </li>
+                <li class="center">
+                    <div class="center nav-items">
+                        <img class="nav-logo" src="Apple.svg" alt="">
+                        <p class="nav-title">Apple</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="grid-item2">
+            <p class="heading">Project Overview</p>
+            <div id="inner-box"></div>
+        </div>
+    </div>
+</body>
+
+</html>

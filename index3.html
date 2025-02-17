@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVANI - Urban Green Space Analysis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-green: #1a5d1a;
+            --secondary-green: #1d3d1d;
+            --accent-green: #52b788;
+            --dark-green: #0f2f0f;
+            --light-green: #d8f3dc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--dark-green);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-green);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-green);
+            border-radius: 5px;
+        }
+
+        /* Glassmorphism Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(29, 61, 29, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .logo img {
+            width: 80%;
+            margin: auto;
+            /* height: 45px; */
+            /* transition: transform 0.5s ease; */
+        }
+
+        .logo:hover img {
+            /* transform: rotate(360deg); */
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 600;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Modern Navigation */
+        .nav-item {
+            padding: 1rem 1.5rem;
+            margin: 0.8rem 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item:hover {
+            background: var(--accent-green);
+            transform: translateX(10px);
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: 0.5s;
+        }
+
+        .nav-item:hover::before {
+            left: 100%;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem 3rem;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, var(--primary-green), var(--dark-green));
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+            margin-bottom: 4rem;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after, h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+
+        h1:hover::after, h2:hover::after {
+            width: 100%;
+        }
+
+        /* Modern Cards */
+        .problem-grid, .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .problem-card, .team-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .problem-card:hover, .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .card-image {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-green);
+            transition: all 0.3s ease;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover .card-image img,
+        .team-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        /* Animation for sections */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating animation for cards */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .problem-card, .team-card {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Modern Footer */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 240px;
+            }
+            .main-content {
+                margin-left: 240px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for section animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all sections
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Smooth scroll for navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const targetId = e.target.textContent.toLowerCase();
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="Assets/Logo.png" alt="AVANI Logo">
+            <!-- <span class="logo-text">AVANI</span> -->
+        </div>
+        <div class="nav-item">About</div>
+        <div class="nav-item">Sensors Data</div>
+        <div class="nav-item">Report</div>
+        <div class="nav-item">Contact Us</div>
+    </div>
+
+    <div class="main-content">
+        <section id="about" class="section">
+            <h1>What is AVANI?</h1>
+            <p>Urbanization is Rapidly Reducing Green Spaces, Leading To Environmental Issues Such As Heat Islands, Pollution, And Biodiversity Loss. City Planners Struggle To Analyze And Optimize Green Areas Effectively. Our Project, AVANI, Provides A Data-Driven Solution Using GIS And Machine Learning To Ensure Sustainable Urban Planning.</p>
+        </section>
+
+        <section id="overview" class="section">
+            <h2>Project Overview</h2>
+            <p>Urbanization is Rapidly Reducing Green Spaces, Leading To Environmental Issues Such As Heat Islands, Pollution, And Biodiversity Loss. City Planners Struggle To Analyze And Optimize Green Areas Effectively. Our Project, AVANI, Provides A Data-Driven Solution Using GIS And Machine Learning To Ensure Sustainable Urban Planning.</p>
+        </section>
+
+        <section id="problems" class="section">
+            <h2>The Problem</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="card-image">
+                        <img src="/api/placeholder/120/120" alt="Loss of Green Spaces">
+                    </div>
+                    <h3>Loss Of Green Spaces</h3>
+                    <p>Impact on urban environment</p>
+                </div>
+                <!-- Repeat for other problem cards -->
+            </div>
+        </section>
+
+        <section id="team" class="section">
+            <h2>The Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="card-image">
+                        <img src="/api/placeholder/120/120" alt="Team Member">
+                    </div>
+                    <h3>Ratikanta Behera</h3>
+                    <p>UI/UX Designer</p>
+                </div>
+                <!-- Repeat for other team cards -->
+            </div>
+        </section>
+
+        <footer>
+            <p>Designed By Ratikanta</p>
+        </footer>
+    </div>
+</body>
+</html>

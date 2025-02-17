@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Website</title>
+    <style>
+        :root {
+            --primary: #4ade80;
+            --primary-dark: #22c55e;
+            --primary-light: #86efac;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #f1f5f9;
+            --accent: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            transition: all 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        body.light-mode {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .sidebar {
+            position: fixed;
+            width: 250px;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: glow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px var(--primary-light);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: inherit;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link:nth-child(1) { animation-delay: 0.1s; }
+        .nav-link:nth-child(2) { animation-delay: 0.2s; }
+        .nav-link:nth-child(3) { animation-delay: 0.3s; }
+        .nav-link:nth-child(4) { animation-delay: 0.4s; }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background-color: rgba(74, 222, 128, 0.1);
+            transform: translateX(10px);
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+            max-width: 1200px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 1rem;
+            border-radius: 50%;
+            background-color: rgba(74, 222, 128, 0.1);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(74, 222, 128, 0.2);
+            transform: scale(1.1) rotate(45deg);
+        }
+
+        .content-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.5s ease forwards 0.5s;
+            position: relative;
+        }
+
+        .title {
+            color: var(--primary);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: scaleIn 0.5s ease forwards 1s;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            position: relative;
+            padding: 2rem;
+            background-color: rgba(74, 222, 128, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(74, 222, 128, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .description:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Decorative elements */
+        .gradient-blob {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: -1;
+            animation: blob 15s ease-in-out infinite;
+        }
+
+        .blob-1 { top: -300px; right: -300px; }
+        .blob-2 { bottom: -300px; left: -300px; }
+
+        @keyframes glow {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes scaleIn {
+            to { transform: scaleX(1); }
+        }
+
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, 50px) scale(1.1); }
+            50% { transform: translate(-30px, 20px) scale(0.9); }
+            75% { transform: translate(20px, -50px) scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-blob blob-1"></div>
+    <div class="gradient-blob blob-2"></div>
+
+    <nav class="sidebar">
+        <div class="logo">AVANI</div>
+        <div class="nav-links">
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Sensors Data</a>
+            <a href="#" class="nav-link">Report</a>
+            <a href="#" class="nav-link">Contact Us</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <button class="theme-toggle" aria-label="Toggle theme">🌗</button>
+        
+        <section class="content-section">
+            <h1 class="title">What is AVANI?</h1>
+            <p class="description">
+                Urbanization is Rapidly Reducing Green Spaces, Leading To Environmental Issues Such As Heat Islands, Pollution, And Biodiversity Loss. City Planners Struggle To Analyze And Optimize Green Areas Effectively. Our Project, AVANI, Provides A Data-Driven Solution Using GIS And Machine Learning To Ensure Sustainable Urban Planning.
+            </p>
+        </section>
+    </main>
+
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            themeToggle.textContent = body.classList.contains('light-mode') ? '🌑' : '🌗';
+        });
+
+        // Add hover effect to description
+        const description = document.querySelector('.description');
+        description.addEventListener('mousemove', (e) => {
+            const rect = description.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            description.style.background = `
+                radial-gradient(
+                    circle at ${x}px ${y}px,
+                    rgba(74, 222, 128, 0.1),
+                    rgba(74, 222, 128, 0.05) 40%
+                )
+            `;
+        });
+
+        description.addEventListener('mouseleave', () => {
+            description.style.background = 'rgba(74, 222, 128, 0.05)';
+        });
+    </script>
+</body>
+</html>

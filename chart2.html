@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js Label Color</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h2>Customized Chart Label Colors</h2>
+    <canvas id="myChart"></canvas>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Sales Over Time',
+                    data: [10, 20, 15, 30, 25, 40],
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'red',  // 🔴 Change legend label color
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'green',  // 🟢 Change X-axis label color
+                            font: {
+                                size: 14
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Months',
+                            color: 'blue',  // 🔵 Change X-axis title color
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: 'purple',  // 🟣 Change Y-axis label color
+                            font: {
+                                size: 14
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Sales',
+                            color: 'orange',  // 🟠 Change Y-axis title color
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
