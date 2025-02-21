@@ -127,6 +127,7 @@ body.light-mode {
     max-width: 100%;
     min-height: 100vh;
     position: relative;
+    padding-bottom: 0;
 }
 
 .theme-toggle {
@@ -217,9 +218,17 @@ body.light-mode {
 
 .grid, .grid2 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     place-items: center;
     gap: 50px;
+}
+.team div{
+    font-size: 1rem;
+    height: 300px;
+}
+
+.problem{
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .grid2 {
@@ -251,8 +260,8 @@ body.light-mode {
     border-radius: 50%;
     border: 3px solid var(--accent);
     padding: 3px;
-    height: 200px !important;
-    width: 200px;
+    height: 160px !important;
+    width: 160px;
     margin: 10px;
 }
 
@@ -390,6 +399,62 @@ textarea.form-control {
     border-radius: 0.75rem;
     margin-bottom: 1rem;
     animation: slideDown 0.3s ease;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 250px;
+    margin-top: 4rem;
+    height: 50px;
+    background-color: rgba(123, 193, 161, 0.1);
+}
+.flex div {
+    padding: 0 50px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.container{
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.card h2{
+    /* transform: translateY(-50%); */
+    transition: transform 0.3s ease;
+}
+
+.card:hover h2 {
+    transform: translateY(-120%);
+}
+
+
+.details {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: var(--accent);
+    color: var(--text-light);
+    font-size: 1.2rem;
+    line-height: 1.4;
+    box-sizing: border-box;
+    transition: bottom 0.3s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card:hover .details {
+    bottom: 0;
+}
+
+/* Add a subtle glow effect on hover */
+.card:hover {
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.2);
 }
 
 @keyframes spin {
