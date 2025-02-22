@@ -231,6 +231,24 @@ body.light-mode {
     grid-template-columns: repeat(3, 1fr);
 }
 
+.problem div{
+    height: 400px;
+}
+
+.problem .item{
+    justify-content: space-between;
+}
+
+.problem .item img{
+    height: 100px;
+}
+.problem .item h2{
+    height: 105px;
+}
+.problem .item p{
+    height: 140px;
+}
+
 .grid2 {
     grid-template-columns: repeat(2, 1fr);
 }

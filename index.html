@@ -7,8 +7,16 @@
     <title>AVANI</title>
     <link rel="icon" type="image/png" href="Assets/Frame 35 (2).png">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
+    
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -74,12 +82,14 @@
                     <div class="item description">
                         <img src="Assets/problem1.png" alt="problem1">
                         <h2>Limited Real-Time Public Awareness</h2>
-                        <p>Lack of public access to real-time environmental data limits engagement in sustainable practices.</p>
+                        <p>Lack of public access to real-time environmental data limits engagement in sustainable
+                            practices.</p>
                     </div>
                     <div class="item description">
                         <img src="Assets/problem1.png" alt="problem1">
                         <h2>Inefficient Land Use Planning</h2>
-                        <p>There is no structured approach to balancing development with environmental sustainability.</p>
+                        <p>There is no structured approach to balancing development with environmental sustainability.
+                        </p>
                     </div>
                     <div class="item description">
                         <img src="Assets/problem1.png" alt="problem1">
@@ -102,37 +112,42 @@
                 <div class="container grid team">
                     <div class="card item description">
                         <h2>Web Development</h3>
-                        <div class="details">
-                            <p>Creating responsive and interactive websites using modern technologies and frameworks for optimal user experience.</p>
-                        </div>
+                            <div class="details">
+                                <p>Creating responsive and interactive websites using modern technologies and frameworks
+                                    for optimal user experience.</p>
+                            </div>
                     </div>
-            
+
                     <div class="card item description">
                         <h2>UI/UX Design</h3>
-                        <div class="details">
-                            <p>Crafting beautiful user interfaces and seamless user experiences through research and innovative design.</p>
-                        </div>
+                            <div class="details">
+                                <p>Crafting beautiful user interfaces and seamless user experiences through research and
+                                    innovative design.</p>
+                            </div>
                     </div>
-            
+
                     <div class="card item description">
                         <h2>Mobile Development</h3>
-                        <div class="details">
-                            <p>Building native and cross-platform mobile applications that deliver exceptional performance.</p>
-                        </div>
+                            <div class="details">
+                                <p>Building native and cross-platform mobile applications that deliver exceptional
+                                    performance.</p>
+                            </div>
                     </div>
-            
+
                     <div class="card item description">
                         <h2>Cloud Services</h3>
-                        <div class="details">
-                            <p>Implementing and managing cloud infrastructure and services for scalable solutions.</p>
-                        </div>
+                            <div class="details">
+                                <p>Implementing and managing cloud infrastructure and services for scalable solutions.
+                                </p>
+                            </div>
                     </div>
-            
+
                     <div class="card item description">
                         <h2>Data Analytics</h3>
-                        <div class="details">
-                            <p>Processing and analyzing data to derive meaningful insights for informed decision making.</p>
-                        </div>
+                            <div class="details">
+                                <p>Processing and analyzing data to derive meaningful insights for informed decision
+                                    making.</p>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -209,8 +224,10 @@
         <section class="content-section" id="report-section">
             <div class="block">
                 <h1 class="title">3D View</h1>
-                <div class="description view">
-                    <img src="Assets/3d view.png" alt="">
+                <div class="description view" id="canvas-container">
+                    
+
+                    <!-- <img src="Assets/3d view.png" alt=""> -->
                 </div>
             </div>
             <div class="block">
@@ -256,6 +273,9 @@
             <div>2025 Avani. All rights reserved.</div>
         </div>
     </footer>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 
 </html>
