@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
     const charts = {};
     const chartConfigs = [
-        { id: "air-quality", label: "Air Quality Over Time", unit: "AQI", data: [10, 40, 30, 20, 25, 40] },
+        { id: "air-quality", label: "Air Quality Over Time", unit: "AQI", data: [10, 4, 30, 20, 25, 40] },
         { id: "soil-moisture", label: "Soil Moisture Over Time", unit: "Moisture", data: [20, 30, 45, 35, 25, 40] },
         { id: "temperature", label: "Temperature Over Time", unit: "°C", data: [30, 20, 25, 20, 15, 10] },
         { id: "humidity", label: "Humidity Over Time", unit: "%", data: [15, 10, 35, 25, 20, 40] },
@@ -13,6 +13,57 @@ document.addEventListener("DOMContentLoaded", function () {
             { label: "Soil Data 3", data: [8, 18, 12, 28, 22, 38], color: "green" }
         ]}
     ];
+    
+
+
+    async function fetchSensorData(sensorType) {
+        try {
+            const response = await fetch("soildata.json"); // Fetch JSON file
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    
+            const data = await response.json(); // Parse JSON data
+    
+            if (!data.messages || !Array.isArray(data.messages)) {
+                throw new Error("Invalid JSON structure: 'messages' array is missing");
+            }
+    
+            // Extract relevant sensor data from each message
+            return data.messages.map(msg => msg.payload[sensorType]).filter(value => value !== undefined);
+        } catch (error) {
+            console.error(`Error fetching ${sensorType} data:`, error);
+            return [];
+        }
+    }
+    
+    async function updateChart(sensorType, chartId) {
+        const sensorData = await fetchSensorData(sensorType);
+        if (sensorData.length === 0) {
+            console.warn(`No valid ${sensorType} data found.`);
+            return;
+        }
+    
+        let index = 0;
+    
+        setInterval(() => {
+            const chart = charts[chartId];
+            if (chart && index < sensorData.length) {
+                chart.data.datasets[0].data.shift(); // Remove first element
+                chart.data.datasets[0].data.push(sensorData[index]); // Add new data point
+                chart.update(); // Refresh the chart
+                index = (index + 1) % sensorData.length; // Loop when reaching the end
+            } else {
+                console.warn(`Chart ${chartId} not initialized or no data available.`);
+            }
+        }, 1000);
+    }
+    
+    // Call functions to update charts for both Air Quality and Soil Moisture
+    updateChart("airQuality", "air-quality");
+    updateChart("soilMoisture", "soil-moisture");
+    updateChart("temperature", "temperature");
+    updateChart("humidity", "humidity");
+    
+    
 
     function getColors() {
         return body.classList.contains("light-mode") ?

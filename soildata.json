@@ -1,0 +1,66 @@
+{
+    "topicFilter": "sensor/data",
+    "qos": 0,
+    "messages": [
+      {
+        "format": "json",
+        "topic": "sensor/data",
+        "timestamp": 1733565745167,
+        "payload": {
+          "temperature": 27.6,
+          "humidity": 70,
+          "airQuality": 8,
+          "soilMoisture": 100
+        },
+        "qos": 0
+      },
+      {
+        "format": "json",
+        "topic": "sensor/data",
+        "timestamp": 1733565740144,
+        "payload": {
+          "temperature": 27.6,
+          "humidity": 69,
+          "airQuality": 8,
+          "soilMoisture": 100
+        },
+        "qos": 0
+      },
+      {
+        "format": "json",
+        "topic": "sensor/data",
+        "timestamp": 1733565735106,
+        "payload": {
+          "temperature": 27.7,
+          "humidity": 69,
+          "airQuality": 8,
+          "soilMoisture": 100
+        },
+        "qos": 0
+      },
+      {
+        "format": "json",
+        "topic": "sensor/data",
+        "timestamp": 1733565730092,
+        "payload": {
+          "temperature": 27.6,
+          "humidity": 70,
+          "airQuality": 8,
+          "soilMoisture": 100
+        },
+        "qos": 0
+      },
+      {
+        "format": "json",
+        "topic": "sensor/data",
+        "timestamp": 1733565725025,
+        "payload": {
+          "temperature": 27.6,
+          "humidity": 70,
+          "airQuality": 8,
+          "soilMoisture": 100
+        },
+        "qos": 0
+      }
+    ]
+  }
